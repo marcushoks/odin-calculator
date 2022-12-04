@@ -1,4 +1,6 @@
 const DEFAULT_DISPLAY = "0";
+const OPERATOR_SELECTED_CLASS = "selected";
+
 let display = DEFAULT_DISPLAY;
 
 let operandA: number | null;
@@ -31,6 +33,7 @@ toggleSignBtn?.addEventListener("click", () => {
 
 const operatorBtns = document.querySelectorAll(".button.operator");
 operatorBtns.forEach((button) => {
+  // set clicked button as operator
   button.addEventListener("click", (e) => {
     if (display.length === 0) return;
 
@@ -65,6 +68,17 @@ operatorBtns.forEach((button) => {
         break;
       }
     }
+  });
+
+  // toggles current selected operator UI
+  button.addEventListener("click", (e) => {
+    operatorBtns.forEach((btn) => {
+      if (btn === e.target) {
+        btn.classList.add(OPERATOR_SELECTED_CLASS);
+      } else {
+        btn.classList.remove(OPERATOR_SELECTED_CLASS);
+      }
+    });
   });
 });
 
@@ -147,6 +161,11 @@ function clearEntry() {
   operator = null;
   display = DEFAULT_DISPLAY;
   updateDisplay(display);
+
+  // remove css class for selected operator
+  operatorBtns.forEach((button) => {
+    button.classList.remove(OPERATOR_SELECTED_CLASS);
+  });
 }
 
 /** Updates the display UI */
