@@ -71,6 +71,14 @@ evaluateBtn?.addEventListener("click", evaluate);
 const clearEntryBtn = document.querySelector("#clear-entry");
 clearEntryBtn?.addEventListener("click", clearEntry);
 
+const backspaceBtn = document.querySelector("#backspace");
+backspaceBtn?.addEventListener("click", () => {
+  if (display !== DEFAULT_DISPLAY) {
+    display = display.slice(0, display.length - 1);
+    updateDisplay(display);
+  }
+});
+
 function add(a: number, b: number) {
   return a + b;
 }
