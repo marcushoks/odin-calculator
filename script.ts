@@ -1,4 +1,5 @@
-let display = "";
+const DEFAULT_DISPLAY = "0";
+let display = DEFAULT_DISPLAY;
 
 let operandA: number | null;
 let operandB: number | null;
@@ -17,7 +18,7 @@ operatorBtns.forEach((button) => {
 
     if (!operandA) {
       operandA = parseFloat(display);
-      display = "";
+      display = DEFAULT_DISPLAY;
       updateDisplay(display);
     }
 
@@ -108,7 +109,7 @@ function clearEntry() {
   operandA = null;
   operandB = null;
   operator = null;
-  display = "";
+  display = DEFAULT_DISPLAY;
   updateDisplay(display);
 }
 
