@@ -18,6 +18,8 @@ const toggleSignBtn = document.querySelector("#toggle-sign");
 toggleSignBtn?.addEventListener("click", () => {
   if (display === "0") return;
 
+  // if number is positive, prepends negative sign
+  // else if number is negative, remove negative sign
   if (display.includes("-")) {
     display = display.slice(1);
   } else {
@@ -32,6 +34,7 @@ operatorBtns.forEach((button) => {
   button.addEventListener("click", (e) => {
     if (display.length === 0) return;
 
+    // if operandA is not set, set operandA to the current value of display
     if (!operandA) {
       operandA = parseFloat(display);
       display = DEFAULT_DISPLAY;
@@ -117,8 +120,13 @@ function updateOperand(e: Event) {
   updateDisplay(display);
 }
 
+/** Evaluate the inputted expression */
 function evaluate() {
+  // only evaluate when operandA is not null
+  // and an operator is already selected
+  // and the display is not null
   if (operandA && operator && display) {
+    // the current value of display will be set to operandB
     operandB = parseFloat(display);
 
     const result = operator(operandA, operandB);
@@ -132,6 +140,7 @@ function evaluate() {
   }
 }
 
+/** Clears all inputted operands and operators */
 function clearEntry() {
   operandA = null;
   operandB = null;
@@ -140,6 +149,7 @@ function clearEntry() {
   updateDisplay(display);
 }
 
+/** Updates the display UI */
 function updateDisplay(str: string) {
   const display = document.querySelector("#display");
   if (display) display.textContent = str;
