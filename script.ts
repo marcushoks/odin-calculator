@@ -40,6 +40,10 @@ operatorBtns.forEach((button) => {
         operator = divide;
         break;
       }
+      case "modulus": {
+        operator = modulus;
+        break;
+      }
     }
   });
 });
@@ -64,6 +68,10 @@ function multiply(a: number, b: number) {
 
 function divide(a: number, b: number) {
   return a / b;
+}
+
+function modulus(a: number, b: number) {
+  return a % b;
 }
 
 function updateOperand(e: Event) {
