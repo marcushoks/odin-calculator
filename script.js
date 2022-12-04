@@ -81,8 +81,12 @@ const backspaceBtn = document.querySelector("#backspace");
 backspaceBtn === null || backspaceBtn === void 0 ? void 0 : backspaceBtn.addEventListener("click", () => {
     if (display !== DEFAULT_DISPLAY) {
         display = display.slice(0, display.length - 1);
-        updateDisplay(display);
+        // if display is empty
+        if (display.length === 0) {
+            display = DEFAULT_DISPLAY;
+        }
     }
+    updateDisplay(display);
 });
 function add(a, b) {
     return a + b;
@@ -129,6 +133,7 @@ function evaluate() {
         operandA = null;
         operandB = null;
         operator = null;
+        clearSelectedOperator();
     }
 }
 /** Clears all inputted operands and operators */
@@ -138,14 +143,17 @@ function clearEntry() {
     operator = null;
     display = DEFAULT_DISPLAY;
     updateDisplay(display);
-    // remove css class for selected operator
-    operatorBtns.forEach((button) => {
-        button.classList.remove(OPERATOR_SELECTED_CLASS);
-    });
+    clearSelectedOperator();
 }
 /** Updates the display UI */
 function updateDisplay(str) {
     const display = document.querySelector("#display");
     if (display)
         display.textContent = str;
+}
+/** Removes css class for selected operator */
+function clearSelectedOperator() {
+    operatorBtns.forEach((button) => {
+        button.classList.remove(OPERATOR_SELECTED_CLASS);
+    });
 }
