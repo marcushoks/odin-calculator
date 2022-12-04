@@ -151,6 +151,8 @@ function evaluate() {
     operandA = null;
     operandB = null;
     operator = null;
+
+    clearSelectedOperator();
   }
 }
 
@@ -162,14 +164,18 @@ function clearEntry() {
   display = DEFAULT_DISPLAY;
   updateDisplay(display);
 
-  // remove css class for selected operator
-  operatorBtns.forEach((button) => {
-    button.classList.remove(OPERATOR_SELECTED_CLASS);
-  });
+  clearSelectedOperator();
 }
 
 /** Updates the display UI */
 function updateDisplay(str: string) {
   const display = document.querySelector("#display");
   if (display) display.textContent = str;
+}
+
+/** Removes css class for selected operator */
+function clearSelectedOperator() {
+  operatorBtns.forEach((button) => {
+    button.classList.remove(OPERATOR_SELECTED_CLASS);
+  });
 }
