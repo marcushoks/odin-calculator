@@ -92,8 +92,14 @@ const backspaceBtn = document.querySelector("#backspace");
 backspaceBtn?.addEventListener("click", () => {
   if (display !== DEFAULT_DISPLAY) {
     display = display.slice(0, display.length - 1);
-    updateDisplay(display);
+
+    // if display is empty
+    if (display.length === 0) {
+      display = DEFAULT_DISPLAY;
+    }
   }
+
+  updateDisplay(display);
 });
 
 function add(a: number, b: number) {
@@ -151,6 +157,8 @@ function evaluate() {
     operandA = null;
     operandB = null;
     operator = null;
+
+    clearSelectedOperator();
   }
 }
 
@@ -162,14 +170,18 @@ function clearEntry() {
   display = DEFAULT_DISPLAY;
   updateDisplay(display);
 
-  // remove css class for selected operator
-  operatorBtns.forEach((button) => {
-    button.classList.remove(OPERATOR_SELECTED_CLASS);
-  });
+  clearSelectedOperator();
 }
 
 /** Updates the display UI */
 function updateDisplay(str: string) {
   const display = document.querySelector("#display");
   if (display) display.textContent = str;
+}
+
+/** Removes css class for selected operator */
+function clearSelectedOperator() {
+  operatorBtns.forEach((button) => {
+    button.classList.remove(OPERATOR_SELECTED_CLASS);
+  });
 }
