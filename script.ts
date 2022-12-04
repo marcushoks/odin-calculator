@@ -11,6 +11,9 @@ operandBtns.forEach((button) => {
   button.addEventListener("click", updateOperand);
 });
 
+const decimalBtn = document.querySelector("#decimal-point");
+decimalBtn?.addEventListener("click", updateOperand);
+
 const operatorBtns = document.querySelectorAll(".button.operator");
 operatorBtns.forEach((button) => {
   button.addEventListener("click", (e) => {
@@ -83,8 +86,11 @@ function updateOperand(e: Event) {
   // prevent user from stacking 0's
   if (display === "0" && input === "0") return;
 
+  // prevent user from stacking .'s
+  if (display.includes(".") && input === ".") return;
+
   // remove leading 0
-  if (display === "0") display = "";
+  if (display === "0" && input !== ".") display = "";
 
   display += input;
   updateDisplay(display);
