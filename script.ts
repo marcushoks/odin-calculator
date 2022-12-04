@@ -92,8 +92,14 @@ const backspaceBtn = document.querySelector("#backspace");
 backspaceBtn?.addEventListener("click", () => {
   if (display !== DEFAULT_DISPLAY) {
     display = display.slice(0, display.length - 1);
-    updateDisplay(display);
+
+    // if display is empty
+    if (display.length === 0) {
+      display = DEFAULT_DISPLAY;
+    }
   }
+
+  updateDisplay(display);
 });
 
 function add(a: number, b: number) {
