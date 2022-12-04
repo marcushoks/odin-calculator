@@ -84,7 +84,7 @@ function multiply(a: number, b: number) {
 }
 
 function divide(a: number, b: number) {
-  return a / b;
+  return b !== 0 ? a / b : b;
 }
 
 function modulus(a: number, b: number) {
