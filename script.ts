@@ -14,6 +14,19 @@ operandBtns.forEach((button) => {
 const decimalBtn = document.querySelector("#decimal-point");
 decimalBtn?.addEventListener("click", updateOperand);
 
+const toggleSignBtn = document.querySelector("#toggle-sign");
+toggleSignBtn?.addEventListener("click", () => {
+  if (display === "0") return;
+
+  if (display.includes("-")) {
+    display = display.slice(1);
+  } else {
+    display = "-" + display;
+  }
+
+  updateDisplay(display);
+});
+
 const operatorBtns = document.querySelectorAll(".button.operator");
 operatorBtns.forEach((button) => {
   button.addEventListener("click", (e) => {
